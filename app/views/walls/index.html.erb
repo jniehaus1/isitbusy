@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="col-8 map_container">
+    <div id="mapid"></div>
+  </div>
+  <div class="col-8">
+    <%= form_with(url: "/autocomplete", method: "POST") do |f| %>
+      <div class="form-group">
+        <%= f.text_field :search_text, id: "place_search_bar", class: "form-control col-6" %>
+        <%= f.submit "Search", class: "col-2" %><i id="busy_spinner" class="fa fa-spinner fa-spin d-none"></i>
+      </div>
+    <% end %>
+  </div>
+  <div id="busy_data" class="col-8"></div>
+</div>
+
+<script>
+  <%= render "map.js" %>
+  <%= render "autocomplete.js" %>
+</script>

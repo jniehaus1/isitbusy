@@ -1,0 +1,42 @@
+// Autocomplete Stuff
+$("#place_search_bar").autocomplete({
+  delay: 50,
+  source: function (request, response) {
+    $.ajax({
+      dataType: "JSON",
+      type:     "POST",
+      url:      "/autocomplete",
+      data:     { search_text: request.term, authenticity_token: $('[name="csrf-token"]')[0].content },
+      success:  function (data) {
+        response($.map(data, function (item) {
+          return { label: item["description"], place_id: item["place_id"] };
+        }));
+      }
+    });
+  },
+  minLength: 2,
+  close:  function () {},
+  focus:  function (event, ui) {},
+  select: function (event, ui) {
+    $("#busy_spinner").removeClass("d-none");
+    $.ajax({
+      dataType: "JSON",
+      type:     "GET",
+      url:      "/lookup",
+      data:     { place_id: ui.item.place_id },
+      success:  function (data) {
+        $("#busy_spinner").addClass("d-none");
+        place_marker(mymap, data);
+        $("#busy_data").html(data.name);
+      },
+      error: function (data) {
+        $("#busy_spinner").addClass("d-none");
+      }
+    });
+  },
+  open: function () {}
+}).autocomplete("instance")._renderItem = function (ul, item) {
+  return $("<li place_id=" + item.place_id + ">")
+    .append('<div tabindex="-1">' + item.label + '</div>')
+    .appendTo(ul)
+};

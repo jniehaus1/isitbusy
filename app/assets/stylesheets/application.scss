@@ -10,6 +10,14 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
- *= require_self
+ *  require_tree .
+ *  require_self
+ *  require jquery-ui
+ *  require font-awesome
+ *  require bootstrap
  */
+@import "jqueryui/jquery-ui.min.css";
+@import "font-awesome";
+@import "bootstrap";
+@import "jqueryui/jquery-ui-1.10.0.custom.css";
+@import "walls.scss";
