@@ -11,7 +11,6 @@ gem "uglifier", ">= 1.3.0"
 gem "coffee-rails", "~> 4.2"
 gem "turbolinks", "~> 5"
 gem "jbuilder", "~> 2.5"
-gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "listen"
 
 gem "bootstrap", "~> 4.0.0"
@@ -19,6 +18,8 @@ gem "font-awesome-rails"
 gem "httparty"
 gem "pry"
 gem "pycall"
+
+gem "dotenv-rails"
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
