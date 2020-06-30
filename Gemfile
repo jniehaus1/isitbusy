@@ -18,6 +18,7 @@ gem "font-awesome-rails"
 gem "httparty"
 gem "pry"
 gem "pycall"
+gem "serviceworker-rails"
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"

@@ -16,4 +16,5 @@
 //= require popper
 //= require jquery-ui
 //= require bootstrap
-//= require_tree .
+//= require serviceworker-companion
+//= require map_controls
