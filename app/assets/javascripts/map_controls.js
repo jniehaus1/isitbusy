@@ -18,17 +18,23 @@ function place_marker(map, data) {
   var day_index = today.getDay() - 1;
   day_index = day_index < 0 ? 6 : day_index; // Shift left from 0 to 6, matches Monday to 0
   hour_index = today.getHours();
+  debugger;
+  if (typeof(data["populartimes"]) != "undefined") {
+      full_busyness    = data["populartimes"][day_index][1][1];
+      live_busyness    = data["current_popularity"];
+      max_busyness     = Math.max(...full_busyness);
+      busyness         = full_busyness[hour_index];
+      display_busyness = Math.round(100 * busyness/max_busyness);
 
-  if (typeof(data["popular_times"]) != "undefined") {
-      full_busyness = data["populartimes"][day_index][1][1];
-      max_busyness = Math.max(...full_busyness);
-      busyness = full_busyness[hour_index];
-      display_busyness = Math.round(100 * busyness/max_busyness)
+      message = "<b>" + data.name + "</b><br>I am usually " + display_busyness + "% busy right now."
 
-      marker.bindPopup("<b>" + data.name + "</b><br>I am " + display_busyness + "% busy right now.").openPopup();
+      if (typeof(live_busyness) === "number") {
+        message = message + "<br><b>Live Data:</b> " + Math.round(100 * live_busyness/max_busyness) + "% busy."
+      }
   } else {
-      marker.bindPopup("<b>" + data.name + "</b><br>No data available :(").openPopup();
+      message = "<b>" + data.name + "</b><br>No data available :("
   }
+  marker.bindPopup(message).openPopup();
 }
 
 function onLocationError(e) {
