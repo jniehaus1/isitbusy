@@ -8,8 +8,7 @@ class WallsController < ApplicationController
   def autocomplete
     respond_to :json
 
-    response = HTTParty.get("https://maps.googleapis.com/maps/api/place/autocomplete/json?input=#{params[:search_text]}" \
-                            "&key=#{ENV['GOOGLE_API_KEY']}&types=establishment") || Hash.new
+    response = HTTParty.get("https://maps.googleapis.com/maps/api/place/autocomplete/json", options) || Hash.new
     render json: response["predictions"]
   end
 
@@ -20,6 +19,14 @@ class WallsController < ApplicationController
   end
 
   private
+
+  def options
+    { query: { input: params[:search_text],
+               key: ENV["GOOGLE_API_KEY"],
+               types: "establishment",
+               location: session[:latlng] == "NA" ? nil : session[:latlng],
+               radius: "50" } }
+  end
 
   # Turns out that populartimes returns a python dict, which doesn't handle nested hashes appropriately on the ruby side
   def repack_hash(data)

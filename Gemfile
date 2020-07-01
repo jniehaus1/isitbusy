@@ -15,6 +15,7 @@ gem "listen"
 
 gem "bootstrap", "~> 4.0.0"
 gem "font-awesome-rails"
+gem "geocoder"
 gem "httparty"
 gem "pry"
 gem "pycall"
