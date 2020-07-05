@@ -7,7 +7,6 @@ class WallsController < ApplicationController
 
   def autocomplete
     respond_to :json
-
     response = HTTParty.get("https://maps.googleapis.com/maps/api/place/autocomplete/json", options) || Hash.new
     render json: response["predictions"]
   end

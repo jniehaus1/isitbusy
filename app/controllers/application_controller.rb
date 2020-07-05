@@ -3,6 +3,6 @@ class ApplicationController < ActionController::Base
 
   def geocode_ip
     return nil if session[:latlng].present?
-    session[:latlng] = request.location.coordinates || "NA" # Uses Geocoder gem
+    session[:latlng] = request.location.coordinates.presence || "NA" # Uses Geocoder gem
   end
 end
