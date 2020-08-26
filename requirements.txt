@@ -1,1 +1,1 @@
--e git+https://github.com/m-wrzr/populartimes.git
+git+https://github.com/m-wrzr/populartimes.git
