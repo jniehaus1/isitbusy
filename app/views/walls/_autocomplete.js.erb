@@ -9,6 +9,7 @@ $("#place_search_bar").autocomplete({
       data:     { search_text: request.term, authenticity_token: $('[name="csrf-token"]')[0].content },
       success:  function (data) {
         response($.map(data, function (item) {
+          $("#place_search_bar").get(0).scrollIntoView();
           return { label: item["description"], place_id: item["place_id"] };
         }));
       }

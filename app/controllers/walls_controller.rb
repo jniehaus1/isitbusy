@@ -17,6 +17,10 @@ class WallsController < ApplicationController
     render json: repack_hash(response).as_json
   end
 
+  def report
+    Rails.logger.info("Reported!")
+  end
+
   private
 
   def options

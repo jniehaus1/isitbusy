@@ -4,4 +4,6 @@ Rails.application.routes.draw do
 
   post "autocomplete", to: "walls#autocomplete"
   get  "lookup",       to: "walls#lookup"
+  get  "report",       to: "walls#report"
+  post "report",       to: "walls#report"
 end

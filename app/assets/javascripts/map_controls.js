@@ -18,7 +18,7 @@ function place_marker(map, data) {
   var day_index = today.getDay() - 1;
   day_index = day_index < 0 ? 6 : day_index; // Shift left from 0 to 6, matches Monday to 0
   hour_index = today.getHours();
-  debugger;
+
   if (typeof(data["populartimes"]) != "undefined") {
       full_busyness    = data["populartimes"][day_index][1][1];
       live_busyness    = data["current_popularity"];
