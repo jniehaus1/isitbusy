@@ -2,6 +2,7 @@ class WallsController < ApplicationController
   require "pycall/import"
   include PyCall::Import
   before_action :setup_pycall, only: :lookup
+  skip_before_action :verify_authenticity_token, only: :report
 
   def index; end
 
@@ -19,6 +20,13 @@ class WallsController < ApplicationController
 
   def report
     Rails.logger.info("Reported!")
+    if validate_count_params
+      Count.create(count_params)
+      head :ok
+    else
+      head :bad_request
+    end
+
   end
 
   private
@@ -41,5 +49,13 @@ class WallsController < ApplicationController
 
   def setup_pycall
     pyimport :populartimes
+  end
+
+  def validate_count_params
+    params[:place_id].present? && params[:wifi_device_count].present? && params[:wifi_device_count].to_i >= 0
+  end
+
+  def count_params
+    params.permit(:place_id, :wifi_device_count)
   end
 end
