@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   get  "lookup",       to: "walls#lookup"
   get  "report",       to: "walls#report"
   post "report",       to: "walls#report"
+
+  resources :counts, only: [:index]
 end

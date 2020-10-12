@@ -1,0 +1,18 @@
+<table>
+  <tr>
+    <b>
+      <th>ID</th>
+      <th>Place_ID</th>
+      <th>wifi_device_count</th>
+      <th>Time Created</th>
+    </b>
+  </tr>
+  <% @counts.each do |c| %>
+    <tr>
+      <td><%= c.id %></td>
+      <td><%= c.place_id %></td>
+      <td><%= c.wifi_device_count %></td>
+      <td><%= c.created_at %></td>
+    </tr>
+  <% end %>
+</table>
