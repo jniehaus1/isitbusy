@@ -9,6 +9,21 @@
 //         return "red";
 //     }
 // }
+function fucking_text(percentage) {
+    if (percentage >= 100) {
+        return "There's people fucking everywhere!"
+    } else if (percentage >= 90) {
+        return "It's fucking packed"
+    } else if (percentage >= 75) {
+        return "It's pretty fucking busy"
+    } else if (percentage >= 50) {
+        return "Somewhat fucking busy"
+    } else if (percentage >= 25) {
+        return "There's a few fuckers around"
+    } else if (percentage >= 0) {
+        return "It's fucking empty"
+    }
+}
 
 function place_marker(map, data) {
   map.setView(new L.LatLng(data["coordinates"]["lat"], data["coordinates"]["lng"]), 18);
@@ -26,10 +41,10 @@ function place_marker(map, data) {
       busyness         = full_busyness[hour_index];
       display_busyness = Math.round(100 * busyness/max_busyness);
 
-      message = "<b>" + data.name + "</b><br>I am usually " + display_busyness + "% busy right now."
+      message = "<h3>" + fucking_text(display_busyness) + "</h3><b>" + data.name + "</b><br>"
 
       if (typeof(live_busyness) === "number") {
-        message = message + "<br><b>Live Data:</b> " + Math.round(100 * live_busyness/max_busyness) + "% busy."
+        message = message + "<b>Live Data:</b> " + Math.round(100 * live_busyness/max_busyness) + "% busy."
       }
   } else {
       message = "<b>" + data.name + "</b><br>No data available :("
