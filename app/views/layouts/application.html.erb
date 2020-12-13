@@ -22,7 +22,10 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
 
-    gtag('config', 'G-8VQR3YHCNT');
+    gtag('config', 'G-8VQR3YHCNT', {
+        cookie_domain: 'isitbusy-prod.herokuapp.com',
+        cookie_flags: 'SameSite=None;Secure',
+    });
 </script>
 
 <body>
